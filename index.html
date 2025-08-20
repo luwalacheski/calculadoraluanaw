@@ -1,84 +1,108 @@
-<!doctype html>
-<html lang="pt-Br">
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-	<title>Calculadora</title>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<link href="./css/style.css" type="text/css" rel="stylesheet" />
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f9;
+      font-family: Arial, sans-serif;
+    }
+    .calculadora {
+      background: #222;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    #resultado {
+      width: 100%;
+      height: 50px;
+      font-size: 1.5em;
+      text-align: right;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+    }
+    .botoes {
+      display: grid;
+      grid-template-columns: repeat(4, 70px);
+      gap: 10px;
+    }
+    button {
+      height: 60px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #ddd;
+    }
+    .operador {
+      background: #ff9800;
+      color: white;
+    }
+    .igual {
+      background: #4caf50;
+      color: white;
+      grid-column: span 2;
+    }
+    .limpar {
+      background: #f44336;
+      color: white;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="calculadora">
+    <input type="text" id="resultado" disabled>
+    <div class="botoes">
+      <button onclick="limpar()" class="limpar">C</button>
+      <button onclick="adicionar('/')">/</button>
+      <button onclick="adicionar('*')">*</button>
+      <button onclick="adicionar('-')">-</button>
+      <button onclick="adicionar('7')">7</button>
+      <button onclick="adicionar('8')">8</button>
+      <button onclick="adicionar('9')">9</button>
+      <button onclick="adicionar('+')" class="operador">+</button>
+      <button onclick="adicionar('4')">4</button>
+      <button onclick="adicionar('5')">5</button>
+      <button onclick="adicionar('6')">6</button>
+      <button onclick="calcular()" class="igual">=</button>
+      <button onclick="adicionar('1')">1</button>
+      <button onclick="adicionar('2')">2</button>
+      <button onclick="adicionar('3')">3</button>
+      <button onclick="adicionar('0')" style="grid-column: span 2;">0</button>
+      <button onclick="adicionar('.')">.</button>
+    </div>
+  </div>
 
-	<nav class="navbar navbar-expand navbar-dark bg-dark">
-		<div class="nav navbar-nav">
-			<a class="nav-item nav-link active" href="#">Calculadora JavaScript <span
-					class="sr-only">(current)</span></a>
-		</div>
-	</nav>
-	<div class="container" style="margin-top: 40px;">
-		<div class="row">
-			<div class="col-md-12">
+  <script>
+    let resultado = document.getElementById("resultado");
 
-				<div id="calculadora">
+    function adicionar(valor) {
+      resultado.value += valor;
+    }
 
-					<table>
-						<tr>
-							<td colspan="4">
-								<input type="text" id="tela" maxlength="30" readonly="readonly" />
-							</td>
-						</tr>
-						<tr>
-							<td><input type="button" id="apagarAnterior" value="<-" /></td>
-							<td><input type="button" id="limparTela" value="C" /></td>
-						</tr>
-						<tr>
-							<td><input type="button" id="num7" value="7" /></td>
-							<td><input type="button" id="num8" value="8" /></td>
-							<td><input type="button" id="num9" value="9" /></td>
-							<td><input type="button" id="divisao" value="/" /></td>
-						</tr>
-						<tr>
-							<td><input type="button" id="num4" value="4" /></td>
-							<td><input type="button" id="num5" value="5" /></td>
-							<td><input type="button" id="num6" value="6" /></td>
-							<td><input type="button" id="multiplicacao" value="*" /></td>
-						</tr>
-						<tr>
-							<td><input type="button" id="num1" value="1" /></td>
-							<td><input type="button" id="num2" value="2" /></td>
-							<td><input type="button" id="num3" value="3" /></td>
-							<td><input type="button" id="subtracao" value="-" /></td>
-						</tr>
-						<tr>
-							<td><input type="button" id="num0" value="0" /></td>
-							<td><input type="button" id="ponto" value="." /></td>
-							<td><input type="button" id="resultado" value="=" /></td>
-							<td><input type="button" id="soma" value="+" /></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+    function limpar() {
+      resultado.value = "";
+    }
 
-	<footer class="footer mt-auto py-3 navbar-dark bg-default">
-		<div class="container">
-			<span>Produzido por Francisco Chaves.</span>
-		</div>
-	</footer>
-
-	<script type="text/javascript" src="./js/script.js"></script>
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
+    function calcular() {
+      try {
+        resultado.value = eval(resultado.value);
+      } catch {
+        resultado.value = "Erro";
+      }
+    }
+  </script>
 </body>
-
 </html>
+
